@@ -37,7 +37,10 @@ namespace Test_Conekta
                             {
                                 if (regex.IsMatch(command[2]))
                                 {
-                                    matriz = new cMatriz(Convert.ToInt32(command[1]), Convert.ToInt32(command[2]));
+                                    if (Convert.ToInt32(command[1]) > 0 && Convert.ToInt32(command[2]) > 0 && Convert.ToInt32(command[2]) < 251)
+                                        matriz = new cMatriz(Convert.ToInt32(command[1]), Convert.ToInt32(command[2]));
+                                    else
+                                        bError = true;
                                 }
                                 else
                                 {
@@ -76,8 +79,14 @@ namespace Test_Conekta
                     case "L":
                         if (command.Length == 4 && bImageCreate && regex.IsMatch(command[1]) && regex.IsMatch(command[2]))
                         {
-                            matriz.funcionL(Convert.ToInt32(command[2]) - 1, Convert.ToInt32(command[1]) - 1, command[3]);
-                            matriz.Imprimir();
+                            if (Convert.ToInt32(command[1]) > 0 && Convert.ToInt32(command[2]) > 0
+                                && Convert.ToInt32(command[2]) <= matriz.n && Convert.ToInt32(command[1]) <= matriz.m)
+                            {
+                                matriz.funcionL(Convert.ToInt32(command[2]) - 1, Convert.ToInt32(command[1]) - 1, command[3]);
+                                matriz.Imprimir();
+                            }
+                            else
+                                bError = true;
                         }
                         else
                         {
@@ -87,8 +96,14 @@ namespace Test_Conekta
                     case "F":
                         if (command.Length == 4 && bImageCreate && regex.IsMatch(command[1]) && regex.IsMatch(command[2]))
                         {
-                            matriz.funcionF(Convert.ToInt32(command[2]) - 1, Convert.ToInt32(command[1]) - 1, command[3]);
-                            matriz.Imprimir();
+                            if (Convert.ToInt32(command[2]) > 0 && Convert.ToInt32(command[1]) > 0 
+                                &&  Convert.ToInt32(command[2])<= matriz.n && Convert.ToInt32(command[1]) <= matriz.m)
+                            {
+                                matriz.funcionF(Convert.ToInt32(command[2]) - 1, Convert.ToInt32(command[1]) - 1, command[3]);
+                                matriz.Imprimir();
+                            }
+                            else
+                                bError = true;
                         }
                         else
                         {
@@ -98,8 +113,20 @@ namespace Test_Conekta
                     case "H":
                         if (command.Length == 5 && bImageCreate && regex.IsMatch(command[1]) && regex.IsMatch(command[3]) && regex.IsMatch(command[2]))
                         {
-                            matriz.funcionH(Convert.ToInt32(command[2]) - 1, Convert.ToInt32(command[3]), Convert.ToInt32(command[1]), command[4]);
-                            matriz.Imprimir();
+                            if (Convert.ToInt32(command[2]) > 0 
+                                && Convert.ToInt32(command[1]) > 0 
+                                && Convert.ToInt32(command[3]) > 0 
+                                && Convert.ToInt32(command[3]) <= matriz.m
+                                && Convert.ToInt32(command[1]) <= matriz.n 
+                                && Convert.ToInt32(command[2]) <= matriz.n
+                                && Convert.ToInt32(command[2]) >= Convert.ToInt32(command[1])
+                                )
+                            {
+                                matriz.funcionH(Convert.ToInt32(command[1])-1,Convert.ToInt32(command[2]), Convert.ToInt32(command[3]), command[4]);
+                                matriz.Imprimir();
+                            }
+                            else
+                                bError = true;
                         }
                         else
                         {
@@ -110,8 +137,20 @@ namespace Test_Conekta
                     case "V":
                         if (command.Length == 5 && bImageCreate && regex.IsMatch(command[1]) && regex.IsMatch(command[3]) && regex.IsMatch(command[2]))
                         {
-                            matriz.funcionV(Convert.ToInt32(command[2]) - 1, Convert.ToInt32(command[3]), Convert.ToInt32(command[1]) - 1, command[4]);
-                            matriz.Imprimir();
+                            if (Convert.ToInt32(command[2]) > 0
+                                && Convert.ToInt32(command[1]) > 0
+                                && Convert.ToInt32(command[3]) > 0
+                                && Convert.ToInt32(command[3]) <= matriz.m
+                                && Convert.ToInt32(command[1]) <= matriz.n
+                                && Convert.ToInt32(command[2]) <= matriz.n
+                                && Convert.ToInt32(command[3]) >= Convert.ToInt32(command[2])
+                                )
+                            { 
+                                matriz.funcionV(Convert.ToInt32(command[2]) - 1, Convert.ToInt32(command[3]), Convert.ToInt32(command[1]) - 1, command[4]);
+                                matriz.Imprimir();
+                            }
+                            else
+                                bError = true;
                         }
                         else
                         {

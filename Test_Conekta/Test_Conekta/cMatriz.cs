@@ -15,14 +15,14 @@ namespace Test_Conekta
             set { _matriz = value; }
         }
 
-        private int m;
+        public int m;
         //public int _m
         //{
         //    get { return _m; }
         //    set { _m = value; }
         //}
 
-        private int n;
+        public int n;
         //public int _n
         //{
         //    get { return _n; }
