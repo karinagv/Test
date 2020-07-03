@@ -27,7 +27,7 @@ namespace Test_Conekta
                     bFin = true;
                 }
                 string[] command = res.Split(' ');
-                switch (command[0])
+                switch (command[0].ToUpper())
                 {
                     case "I":
                         bImageCreate = true;
@@ -37,7 +37,7 @@ namespace Test_Conekta
                             {
                                 if (regex.IsMatch(command[2]))
                                 {
-                                    if (Convert.ToInt32(command[1]) > 0 && Convert.ToInt32(command[2]) > 0 && Convert.ToInt32(command[2]) < 251)
+                                    if (Convert.ToInt32(command[1]) > 0 && Convert.ToInt32(command[2]) > 0 && Convert.ToInt32(command[2]) < 251 && Convert.ToInt32(command[1]) < 251)
                                         matriz = new cMatriz(Convert.ToInt32(command[1]), Convert.ToInt32(command[2]));
                                     else
                                         bError = true;
@@ -57,13 +57,13 @@ namespace Test_Conekta
 
                                 bImageCreate = true;
                                 matriz.CrearMatriz();
-                                matriz.Imprimir();
+                                //matriz.Imprimir();
                             }
                         }
                         else
                         {
                             bError = true;
-                        }
+                        }   
                         break;
                     case "C":
                         if (command.Length > 1 || !bImageCreate)
@@ -73,7 +73,7 @@ namespace Test_Conekta
                         else
                         {
                             matriz.LimpiarMatriz();
-                            matriz.Imprimir();
+                            //matriz.Imprimir();
                         }
                         break;
                     case "L":
@@ -83,7 +83,7 @@ namespace Test_Conekta
                                 && Convert.ToInt32(command[2]) <= matriz.n && Convert.ToInt32(command[1]) <= matriz.m)
                             {
                                 matriz.funcionL(Convert.ToInt32(command[2]) - 1, Convert.ToInt32(command[1]) - 1, command[3]);
-                                matriz.Imprimir();
+                              //  matriz.Imprimir();
                             }
                             else
                                 bError = true;
@@ -100,7 +100,7 @@ namespace Test_Conekta
                                 &&  Convert.ToInt32(command[2])<= matriz.n && Convert.ToInt32(command[1]) <= matriz.m)
                             {
                                 matriz.funcionF(Convert.ToInt32(command[2]) - 1, Convert.ToInt32(command[1]) - 1, command[3]);
-                                matriz.Imprimir();
+                                //matriz.Imprimir();
                             }
                             else
                                 bError = true;
@@ -123,7 +123,7 @@ namespace Test_Conekta
                                 )
                             {
                                 matriz.funcionH(Convert.ToInt32(command[1])-1,Convert.ToInt32(command[2]), Convert.ToInt32(command[3]), command[4]);
-                                matriz.Imprimir();
+                                //matriz.Imprimir();
                             }
                             else
                                 bError = true;
@@ -147,7 +147,7 @@ namespace Test_Conekta
                                 )
                             { 
                                 matriz.funcionV(Convert.ToInt32(command[2]) - 1, Convert.ToInt32(command[3]), Convert.ToInt32(command[1]) - 1, command[4]);
-                                matriz.Imprimir();
+                                //matriz.Imprimir();
                             }
                             else
                                 bError = true;
